@@ -19,7 +19,10 @@ clt+c
 ```
 
 **command to create dynamodb  table using json file locally**
-aws dynamodb create-table --cli-input-json file://items-table.json --endpoint-url http://localhost:8000
+
+```
+$ aws dynamodb create-table --cli-input-json file://items-table.json --endpoint-url http://localhost:8000
+```
 
 **command to create dynamodb using json file**
 
@@ -88,7 +91,7 @@ output:
 }
 ```
 
-**#TO fetch list of table for local dynamodb**
+**To fetch list of table for local dynamodb**
 
 ```
 $ aws dynamodb list-tables --endpoint-url http://localhost:8000
@@ -105,7 +108,7 @@ output:
 
 ```
 
-**delete table**
+**Delete table**
 
 ```
 $ aws dynamodb delete-table --table-name Items
