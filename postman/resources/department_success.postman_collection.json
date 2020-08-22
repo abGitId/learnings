@@ -1,0 +1,1373 @@
+{
+	"info": {
+		"_postman_id": "1e64537e-3f11-4940-8273-a85ec3550fb7",
+		"name": "CRUD department success",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "addDepartment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9f4465d5-bd47-4f44-8c4b-aa7cc51a723b",
+						"exec": [
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"const department = pm.response.json();\r",
+							"pm.test(\"department should contain id\", function () {\r",
+							"    \r",
+							"    pm.expect(\r",
+							"    department.department_ID != undefined\r",
+							"    ).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"deptId\", department.department_ID);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ae1cc491-5bdf-49b1-b8ce-a41e20d21a33",
+						"exec": [
+							"const departments = [\r",
+							"    {\r",
+							"        \"departmentName\":\"Human Resources\",\r",
+							"        \"shortName\":\"HR\"\r",
+							"        \r",
+							"    },\r",
+							"    {\r",
+							"        \"departmentName\":\"Network and Administrator\",\r",
+							"        \"shortName\":\"Netrwok\"\r",
+							"        \r",
+							"    },\r",
+							"    {\r",
+							"        \"departmentName\":\"Department Of Finance\",\r",
+							"        \"shortName\":\"Finance\"\r",
+							"        \r",
+							"    },{\r",
+							"        \"departmentName\":\"Department Of Engineering\",\r",
+							"        \"shortName\":\"Devd\"\r",
+							"        \r",
+							"    },{\r",
+							"        \"departmentName\":\"Department Of Operations\",\r",
+							"        \"shortName\":\"OPS\"\r",
+							"        \r",
+							"    }\r",
+							"];\r",
+							"\r",
+							"const department = _.sample(departments);\r",
+							"\r",
+							"pm.globals.set(\"deptName\", department.departmentName);\r",
+							"pm.globals.set(\"deptShortName\", department.shortName);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"department_Name\": \"{{deptName}}\",\n    \"short_Name\": \"{{deptShortName}}\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/departments",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"departments"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"department_ID\": \"<integer>\",\n    \"department_Name\": \"<string>\",\n    \"short_Name\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"department_ID\": \"<integer>\",\n    \"department_Name\": \"<string>\",\n    \"short_Name\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"department_ID\": \"<integer>\",\n    \"department_Name\": \"<string>\",\n    \"short_Name\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"department_ID\": \"<integer>\",\n    \"department_Name\": \"<string>\",\n    \"short_Name\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"department_ID\": \"<integer>\",\n    \"department_Name\": \"<string>\",\n    \"short_Name\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "getDepartment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "4d8994e7-783a-4b06-a493-7ea55f05fefe",
+						"exec": [
+							"\r",
+							"pm.test(\"getDepartment Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const department = pm.response.json();\r",
+							"pm.test(\"department should contain ID\", function () {\r",
+							"    \r",
+							"    pm.expect(\r",
+							"    department.department_ID != undefined\r",
+							"    ).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/departments/{{deptId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"departments",
+						"{{deptId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "getAllDepartment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "52ee15e6-268d-4380-b3da-8923bfde50ba",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"each department should contain id\", function () {\r",
+							"    const departments = pm.response.json();\r",
+							"    pm.expect(departments.every((department) => {\r",
+							"    return department.department_ID != undefined & department.department_Name != undefined &  department.short_Name != undefined ;\r",
+							"    }\r",
+							"    )).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/departments",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"departments"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "update department",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "60323b57-d7f7-4ad9-b11b-b8243bee62a2",
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});  \r",
+							"\r",
+							"const department = pm.response.json();\r",
+							"const deptId = pm.globals.get(\"deptId\");\r",
+							"const updatedDeptName =pm.globals.get(\"updatedDeptName\");\r",
+							"const updatedDeptShortName = pm.globals.get(\"updatedDeptShortName\");\r",
+							"\r",
+							"pm.test(\"update department should contain upadted dept id\", function () {\r",
+							"    \r",
+							"    pm.expect(\r",
+							"    department.department_ID == deptId\r",
+							"    \r",
+							"    ).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"update department should contain upadted dept name\", function () {\r",
+							"    \r",
+							"    pm.expect(\r",
+							"    department.department_Name == updatedDeptName\r",
+							"    \r",
+							"    ).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"update department should contain upadted shortName\", function () {\r",
+							"    \r",
+							"    pm.expect(\r",
+							"    department.short_Name == updatedDeptShortName\r",
+							"    \r",
+							"    ).to.be.true;\r",
+							"});\r",
+							"\r",
+							"pm.globals.set(\"deptId\", department.department_ID);\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "28eb887b-bd72-4671-92da-16680306ae1b",
+						"exec": [
+							"const departments = [\r",
+							"    {\r",
+							"        \"departmentName\":\"Human Resources\",\r",
+							"        \"shortName\":\"HR\"\r",
+							"        \r",
+							"    },\r",
+							"    {\r",
+							"        \"departmentName\":\"Network and Administrator\",\r",
+							"        \"shortName\":\"Netrwok\"\r",
+							"        \r",
+							"    },\r",
+							"    {\r",
+							"        \"departmentName\":\"Department Of Finance\",\r",
+							"        \"shortName\":\"Finance\"\r",
+							"        \r",
+							"    },{\r",
+							"        \"departmentName\":\"Department Of Engineering\",\r",
+							"        \"shortName\":\"Devd\"\r",
+							"        \r",
+							"    },{\r",
+							"        \"departmentName\":\"Department Of Operations\",\r",
+							"        \"shortName\":\"OPS\"\r",
+							"        \r",
+							"    }\r",
+							"];\r",
+							"\r",
+							"const department = _.sample(departments);\r",
+							"\r",
+							" const updatedDeptName = department.departmentName + '_' + Math.random().toString(36).substr(2, 9);\r",
+							" const updatedDeptShortName = department.shortName + '_' + Math.random().toString(36).substr(2, 9);\r",
+							"\r",
+							"pm.globals.set(\"updatedDeptName\", updatedDeptName);\r",
+							"pm.globals.set(\"updatedDeptShortName\", updatedDeptShortName);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"department_ID\":{{deptId}},\n    \"department_Name\": \"{{updatedDeptName}}\",\n    \"short_Name\": \"{{updatedDeptShortName}}\"\n}"
+				},
+				"url": {
+					"raw": "{{host}}/departments/{{deptId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"departments",
+						"{{deptId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"department_ID\": \"<integer>\",\n    \"department_Name\": \"<string>\",\n    \"short_Name\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"department_ID\": \"<integer>\",\n    \"department_Name\": \"<string>\",\n    \"short_Name\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"department_ID\": \"<integer>\",\n    \"department_Name\": \"<string>\",\n    \"short_Name\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Created",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"department_ID\": \"<integer>\",\n    \"department_Name\": \"<string>\",\n    \"short_Name\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"department_ID\": \"<integer>\",\n    \"department_Name\": \"<string>\",\n    \"short_Name\": \"<string>\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "getDepartment-updated",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "ee5cc92f-fac0-46c6-a7e0-7c15b830acf5",
+						"exec": [
+							"\r",
+							"pm.test(\"getDepartment Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const department = pm.response.json();\r",
+							"pm.test(\"department should contain ID\", function () {\r",
+							"    \r",
+							"    pm.expect(\r",
+							"    department.department_ID != undefined\r",
+							"    ).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/departments/{{deptId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"departments",
+						"{{deptId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "delete Department using id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "295b7927-f970-4895-892a-d0e2afb17540",
+						"exec": [
+							"\r",
+							"pm.test(\"getDepartment Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/departments/{{deptId}}",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"departments",
+						"{{deptId}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments/:id",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id"
+								}
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "getAllDepartment -after delete",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5858501e-d32b-4ac6-a98d-407451ce3252",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const departments = pm.response.json();\r",
+							"pm.test(\"each department should contain id\", function () {\r",
+							"    pm.expect(departments.every((department) => {\r",
+							"    return department.department_ID != undefined & department.department_Name != undefined &  department.short_Name != undefined ;\r",
+							"    }\r",
+							"    )).to.be.true;\r",
+							"});\r",
+							"\r",
+							"const deptId = pm.globals.get(\"deptId\");\r",
+							"\r",
+							"pm.test(\"department list should not contain deleted id\", function () {\r",
+							"    pm.expect(departments.every((department) => {\r",
+							"    return department.department_ID != deptId;\r",
+							"    }\r",
+							"    )).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/departments",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"departments"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Forbidden",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Forbidden",
+					"code": 403,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "*/*"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				},
+				{
+					"name": "Unauthorized",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/departments",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"departments"
+							]
+						}
+					},
+					"status": "Unauthorized",
+					"code": 401,
+					"_postman_previewlanguage": "text",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "text/plain"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "136377d2-0930-4f21-89bf-2dbd337af528",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "0155edbe-fca5-4660-a3c0-d565d2a0de99",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
