@@ -39,3 +39,38 @@ public class DemoApplication {
 }
 ```
 
+-------------------
+#### application properties syntax
+
++ reference in application properties
+  + syntax of reference `${<prop-name>}`
+
+```properties
+key1="sample1","sample11"
+key2="sample2","sample22","sample222"
+
+# refering above key1 and key2 for key.all properties
+key.all=${key1},${key2}
+```
+
+- Accessing application properties in class
+
+```properties
+application.name=demoApplication
+
+city.name=city1 ,city2 ,city3
+```
+
+```java
+@Value("${application.name}")
+private String applicationName;
+
+// converting city.name values into list 
+@Value("#{'${city.name}'.trim().replaceAll(' ','').toLowerCase().split(',')}")
+private List<String> cities;
+```
+
+
+
+----------------------
+
