@@ -11,4 +11,4 @@ intillej: https://projectlombok.org/setup/intellij or https://www.baeldung.com/l
 
   
 
-![lombok-setting-intillij-2020-08-22-090716](C:\Users\Admin\Pictures\lombok-setting-intillij-2020-08-22-090716.png)
+![lombok-setting-intillij-2020-08-22-090716](./lombok-setting-intillij-2020-08-22-090716.png)
