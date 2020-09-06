@@ -28,6 +28,8 @@
 
 + Download recent `WinSW.NET4.exe` file and `sample-minimal.xml` from winsw releases
 
+![spring-doc-winsw-downlod-page-2020-09-06](./spring-doc-winsw-downlod-page-2020-09-06.png)
+
 + package structure to create our service
 
   ```
@@ -76,9 +78,10 @@
   $ my-application.exe start/stop/reset/uninstall
   ```
 
+![spring-doc-app-as-service-2020-09-06](./spring-doc-app-as-service-2020-09-06.png)
+
+
 ------------------------------
-
-
 
 - referance url
 
