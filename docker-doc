@@ -1,0 +1,106 @@
+
+Play with docker used for docker playground.
+
+https://labs.play-with-docker.com/
+
+
+FROM - used fetch base image
+FROM imagename: version 
+
+To build docker image : 
+Docker build - used create new image build
+
+Docker build . -t mydockerimg:v1
+-t used for tag
+Mydockerimg - is docker img name
+v1 - is version of the img
+
+To run docker img:
+ Docker run mydockerimg:v1
+
+
+Alpine image is version of Linux but incredibly small.
+
+___________________________________
+Docker COPY:
+COPY source destination 
+
+Destination is dependent on base image or docker image
+___________________________________
+Docker ADD
+
+ADD xyz.tar.gz Destination 
+
+Add can extract compressed files and copy files from a remote url also
+___________________________________
+
+RUN vs COMMAND vs ENTRYPOINT 
+
+RUN : executes when building the image
+COMMAND & ENTRYPOINT: executes when the container starts
+
+___________________________________
+Docker container cli cmd:
+
+1.Docker container ls: List down all the running containers
+2. Docker container ps : also shows all the running container 
+3. Docker container stop $(docker container ls -aq): this will stops all the running docker containers
+4. Docker container stop contId: Stops the running container
+5. Docker container prune : it will remove all the stopped containers
+6. Docker container ls -a : will show all the running as well as stopped containers 
+7. Docker container logs -f containerId : shows running logs 
+8. Docker container inspect containerId : will return the config doc of container 
+___________________________________
+
+Docker image cli cmd:
+
+https://docs.docker.com/reference/cli/docker/image/
+
+1. Docker image ls : to.list all docker images
+2. Docker image rm imgId : to delete docker image
+3. Docker image rm imagename
+4. Docker tag oldimgname:v1 newingname:latest -to rename docker img name
+5. Docker image history imgname:v1
+6. Docker image inspect imgname:v1
+
+___________________________________
+
+Volume mounts in docker:
+Volume mounts used to allow local machine folder attaching directly inside container.
+
+Docker container run -p 8080:80 -v source: destination imagename
+
+___________________________________
+Exec command:
+Exec command used to interact with the container 
+
+Docker container exec -it containerId /bin/bash
+
+Use exit to get outside the container 
+
+___________________________________
+Docker multi stage :
+
+https://github.com/katherinelim/docker-multistage-example
+
+___________________________________
+Docker network:
+
+1. Docker network create my-network : to create new network
+2. Docker network ls : to list network 
+3. Docker container run -it --network my-network alpine : cmd used to attache network same use for other image so the bot container can access each other
+4. We can create multiple network and attache those network to single container 
+___________________________________
+
+Cmd To install any package in alpine 
+
+Apk add --no-cache mysql-client
+
+
+__________________________________
+
+Docker Volume:
+1. Docker Volume ls : to list docker volumes
+2. Docker Volume prune: to delete volumes currently not in use
+3. Docker container run source:destcontaineraddres imgId
+4. Docker Volume rm volName 
