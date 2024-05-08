@@ -1,0 +1,31 @@
+#Study 
+AWS CLI
+
+- AWS cli used to push the docker images on ECR
+- AWS cli installation ref doc
+https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+
+- command to check AWS cli is working 
+   AWS --version
+- IAM -> user -> create new user -> check programmatic access -> set permission [ AmazonElasticContainerRegisteryPublicFullAccess ] [ for private repo : AmazonElasticContainerRegisteryPublicFullAccess ] -> create user submit -> will get access key Id and secret access key
+
+- To configure AWS cli cmd :
+AWS configure 
+- Will ask below details:
+          - AWS access key id
+          - secret access key
+          - default region name
+          - default output format : json
+ - we can view this details in file ./AWS/credentials
+
+Format of the credentials file 
+[default]
+aws_access_key_id=123
+aws_secret_access_key=abcd
+
+- similar default profile we can add multiple profile in same file 
+
+[dev]
+aws_access_key_id=123
+aws_secret_access_key=abc
+-------------------------------------
