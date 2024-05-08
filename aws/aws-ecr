@@ -1,0 +1,28 @@
+ECR:
+- ECR is elastic container registery 
+
+- public repo 50 GB is free after that per GB it will cost $0.10 per GB
+
+- for private repo it will cost $0.10 pergb + data transfer charges ( note cost may vary )
+
+- for private repo access will be managed by IAM and repo policy permission 
+
+- on ECR repositories you will get push commands for your repo
+
+- to push image to ECR go to AWS CLI cmd steps
+     1. Retrive auth token and authenticate docker client with your registery it will succeed your login
+
+aws ecr get-login-password --region us-east-1 | docker login --usetname AWS --password-stdin accountId
+
+     2. Build your docker image using docker build command 
+
+     3. Cmd Tag your image so you can push the image to repo: 
+
+docker tag imgename: version awsaccountecrname/imagename:tagname
+
+
+     4. Now use push command with cmd: 
+
+docker push awsaccountecrname/imagename:tagname
+
+-------------------------------------
